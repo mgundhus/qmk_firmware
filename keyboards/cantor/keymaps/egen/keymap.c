@@ -1,34 +1,5 @@
 #include QMK_KEYBOARD_H
 
-#define BIG_AE_C 0x00E6
-#define BIG_OE_C 0x00F8
-#define BIG_AA_C 0x00E5
-
-#define SMALL_AE_C 0x00C6
-#define SMALL_OE_C 0x00D8
-#define SMALL_AA_C 0x00C5
-
-void matrix_init_user(void) {
-    set_unicode_input_mode(UC_LNX); // REPLACE UC_XXXX with the Unicode Input Mode for your OS. See table below.
-};
-
-enum unicode_names {
-	BIG_AE,
-	BIG_OE,
-	BIG_AA,
-	SMALL_AE,
-	SMALL_OE,
-	SMALL_AA
-};
-const uint32_t PROGMEM unicode_map[] = {
-	[BIG_AE] = BIG_AE_C,
-	[BIG_OE] = BIG_OE_C,
-	[BIG_AA] = BIG_AA_C,
-	[SMALL_AE] = SMALL_AE_C,
-	[SMALL_OE] = SMALL_OE_C,
-	[SMALL_AA] = SMALL_AA_C,
-};
-
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
      /*
       * ┌───┬───┬───┬───┬───┬───┐           ┌───┬───┬───┬───┬───┬───┐
@@ -46,9 +17,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       */
     [0] = LAYOUT_split_3x6_3(
       //--------------------------------------------------------------------------         ---------------------------------------------------------------------------------
-        KC_TAB,    KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,                                 KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,   XP(BIG_AA, SMALL_AA),
+        KC_TAB,    KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,                                 KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,  KC_MINS,
       //--------------------------------------------------------------------------         ---------------------------------------------------------------------------------
- MT(MOD_LCTL, KC_ESCAPE), KC_A, KC_S,  KC_D,    KC_F,    KC_G,                                 KC_H,    KC_J,    KC_K,    KC_L,  XP(BIG_OE, SMALL_OE), XP(BIG_AE, SMALL_AE),
+ MT(MOD_LCTL, KC_ESCAPE), KC_A, KC_S,  KC_D,    KC_F,    KC_G,                                 KC_H,    KC_J,    KC_K,    KC_L,  KC_SCLN, KC_QUOT,
       //--------------------------------------------------------------------------         ---------------------------------------------------------------------------------
         KC_LSFT,   KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,                                 KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH, KC_RSFT,
       //--------------------------------------------------------------------------         ---------------------------------------------------------------------------------
@@ -71,11 +42,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       */
     [1] = LAYOUT_split_3x6_3(
       //--------------------------------------------------------------         ---------------------------------------------------------------------------------
-        KC_GRV,  KC_1,     KC_2,     KC_3,     KC_4,     KC_5,                   KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    KC_BSLS,
+        KC_GRV,  KC_1,     KC_2,     KC_3,     KC_4,     KC_5,                   KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    KC_PIPE,
       //--------------------------------------------------------------         ---------------------------------------------------------------------------------
-        KC_TILD, KC_EXLM,  KC_AT,    KC_HASH,  KC_DLR,   KC_PERC,                KC_CIRC, KC_AMPR, KC_ASTR, KC_COLN, KC_SCLN, KC_QUOT,
+        KC_TILD, KC_EXLM,  KC_AT,    KC_HASH,  KC_DLR,   KC_PERC,                KC_CIRC, KC_AMPR, KC_ASTR, KC_PLUS, KC_EQL, KC_BSLS,
       //--------------------------------------------------------------         ---------------------------------------------------------------------------------
-        KC_LSFT, KC_PIPE, KC_UNDS,  KC_LCBR,  KC_LPRN,  KC_LBRC,                 KC_RBRC, KC_RPRN, KC_RCBR, KC_MINS, KC_PLUS, KC_EQL,
+        KC_LSFT, KC_NO, KC_NO,  KC_LCBR,  KC_LPRN,  KC_LBRC,                 KC_RBRC, KC_RPRN, KC_RCBR, KC_TRNS,  KC_TRNS, KC_RSFT,
       //--------------------------------------------------------------         ---------------------------------------------------------------------------------
                                       KC_TRNS, KC_TRNS, KC_TRNS,               KC_TRNS, KC_TRNS, KC_TRNS
       //--------------------------------------------------------------         ---------------------------------------------------------------------------------
